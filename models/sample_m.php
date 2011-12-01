@@ -20,17 +20,6 @@ class Sample_m extends MY_Model {
 		 */
 		$this->_table = 'sample';
 	}
-
-	//get all items in an array for Tags
-	public function get_array($limit, $offset)
-	{
-		return $this->db
-					->order_by('name')
-					->limit($limit)
-					->offset($offset)
-					->get('sample')
-					->result_array();
-	}
 	
 	//create a new item
 	public function create($input)

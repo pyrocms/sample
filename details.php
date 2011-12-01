@@ -2,7 +2,7 @@
 
 class Module_Sample extends Module {
 
-	public $version = '1.0';
+	public $version = '2.0';
 
 	public function info()
 	{
@@ -15,7 +15,20 @@ class Module_Sample extends Module {
 			),
 			'frontend' => TRUE,
 			'backend' => TRUE,
-			'menu' => 'content'
+			'menu' => 'content', // You can also place modules in their top level menu. For example try: 'menu' => 'Sample',
+			'sections' => array(
+				'items' => array(
+					'name' 	=> 'sample.items', // These are translated from your language file
+					'uri' 	=> 'admin/sample',
+						'shortcuts' => array(
+							'create' => array(
+								'name' 	=> 'sample.create',
+								'uri' 	=> 'admin/sample/create',
+								'class' => 'add'
+								)
+							)
+						)
+				)
 		);
 	}
 
@@ -23,7 +36,7 @@ class Module_Sample extends Module {
 	{
 		$this->dbforge->drop_table('sample');
 		$this->db->delete('settings', array('module' => 'sample'));
-				
+
 		$sample = array(
                         'id' => array(
 									  'type' => 'INT',
@@ -39,7 +52,7 @@ class Module_Sample extends Module {
 										'constraint' => '100'
 										)
 						);
-		
+
 		$sample_setting = array(
 			'slug' => 'sample_setting',
 			'title' => 'Sample Setting',
@@ -52,13 +65,13 @@ class Module_Sample extends Module {
 			'is_gui' => 1,
 			'module' => 'sample'
 		);
-		
+
 		$this->dbforge->add_field($sample);
 		$this->dbforge->add_key('id', TRUE);
 
 		if($this->dbforge->create_table('sample') AND
 		   $this->db->insert('settings', $sample_setting) AND
-		   is_dir('uploads/sample') OR @mkdir('uploads/sample',0777,TRUE))
+		   is_dir($this->upload_path.'sample') OR @mkdir($this->upload_path.'sample',0777,TRUE))
 		{
 			return TRUE;
 		}

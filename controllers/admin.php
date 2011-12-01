@@ -9,6 +9,7 @@
  */
 class Admin extends Admin_Controller
 {
+	protected $section = 'items';
 
 	public function __construct()
 	{
@@ -62,7 +63,7 @@ class Admin extends Admin_Controller
 		if($this->form_validation->run())
 		{
 			// See if the model can create the record
-			if($this->sample_m->create($_POST))
+			if($this->sample_m->create($this->input->post()))
 			{
 				// All good...
 				$this->session->set_flashdata('success', lang('sample.success'));
@@ -74,6 +75,11 @@ class Admin extends Admin_Controller
 				$this->session->set_flashdata('error', lang('sample.error'));
 				redirect('admin/sample/create');
 			}
+		}
+		
+		foreach ($this->item_validation_rules AS $rule)
+		{
+			$this->data->{$rule['field']} = $this->input->post($rule['field']);
 		}
 
 		// Build the view using sample/views/admin/form.php
@@ -96,7 +102,7 @@ class Admin extends Admin_Controller
 			unset($_POST['btnAction']);
 			
 			// See if the model can create the record
-			if($this->sample_m->update($id, $_POST))
+			if($this->sample_m->update($id, $this->input->post()))
 			{
 				// All good...
 				$this->session->set_flashdata('success', lang('sample.success'));

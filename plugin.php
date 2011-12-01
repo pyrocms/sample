@@ -13,9 +13,9 @@ class Plugin_Sample extends Plugin
 	 * Item List
 	 * Usage:
 	 * 
-	 * {pyro:sample:items limit="5" order="asc"}
-	 *      {id} {name} {slug}
-	 * {/pyro:sample:items}
+	 * {{ sample:items limit="5" order="asc" }}
+	 *      {{ id }} {{ name }} {{ slug }}
+	 * {{ /sample:items }}
 	 *
 	 * @return	array
 	 */

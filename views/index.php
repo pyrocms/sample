@@ -1,26 +1,26 @@
 <div class="sample-container">
 
-	{if '{pyro:empty}'}
+	{{ if items_exist == false }}
 		<p>There are no items.</p>
-	{else}
+	{{ else }}
 		<div class="sample-data">
 			<table cellpadding="0" cellspacing="0">
 				<tr>
-					<th>{pyro:helper:lang line="sample.name"}</th>
-					<th>{pyro:helper:lang line="sample.slug"}</th>
+					<th>{{ helper:lang line="sample.name" }}</th>
+					<th>{{ helper:lang line="sample.slug" }}</th>
 				</tr>
 				<!-- Here we loop through the $items array -->
-				{pyro:items}
+				{{ items }}
 				<tr>
-					<td>{name}</td>
-					<td>{slug}</td>
+					<td>{{ name }}</td>
+					<td>{{ slug }}</td>
 				</tr>
-				{/pyro:items}
+				{{ /items }}
 			</table>
 		</div>
 	
-		{pyro:template:partial name="pagination"}
+		{{ pagination:links }}
 	
-	{/if}
+	{{ endif }}
 	
 </div>
