@@ -7,13 +7,13 @@
 	
 	<?php if (!empty($items)): ?>
 	
-		<table border="0" class="table-list">
+		<table>
 			<thead>
 				<tr>
 					<th><?php echo form_checkbox(array('name' => 'action_to_all', 'class' => 'check-all'));?></th>
 					<th><?php echo lang('sample.name'); ?></th>
 					<th><?php echo lang('sample.slug'); ?></th>
-					<th><?php echo lang('sample.manage'); ?></th>
+					<th></th>
 				</tr>
 			</thead>
 			<tfoot>
@@ -30,11 +30,11 @@
 					<td><?php echo $item->name; ?></td>
 					<td><a href="<?php echo rtrim(site_url(), '/').'/sample'; ?>">
 						<?php echo rtrim(site_url(), '/').'/sample'; ?></a></td>
-					<td>
+					<td class="actions">
 						<?php echo
-						anchor('sample', 	lang('sample.view'), 'target="_blank"') 	. ' | ' .
-						anchor('admin/sample/edit/'		. $item->id, 	lang('sample.edit')) 					. ' | ' .
-						anchor('admin/sample/delete/' 	. $item->id, 	lang('sample.delete'), array('class'=>'confirm')); ?>
+						anchor('sample', lang('sample.view'), 'class="button" target="_blank"').' '.
+						anchor('admin/sample/edit/'.$item->id, lang('sample.edit'), 'class="button"').' '.
+						anchor('admin/sample/delete/'.$item->id, 	lang('sample.delete'), array('class'=>'button')); ?>
 					</td>
 				</tr>
 				<?php endforeach; ?>
