@@ -45,11 +45,7 @@
 		</div>
 		
 	<?php else: ?>
-		<div class="blank-slate">
-			<?php echo image('album.png', 'sample'); ?>
-			
-			<h3><?php echo lang('sample.no_items'); ?></h3>
-		</div>
+		<div class="no_data"><?php echo lang('sample.no_items'); ?></div>
 	<?php endif;?>
 	
 	<?php echo form_close(); ?>
