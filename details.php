@@ -18,11 +18,11 @@ class Module_Sample extends Module {
 			'menu' => 'content', // You can also place modules in their top level menu. For example try: 'menu' => 'Sample',
 			'sections' => array(
 				'items' => array(
-					'name' 	=> 'sample.items', // These are translated from your language file
+					'name' 	=> 'sample:items', // These are translated from your language file
 					'uri' 	=> 'admin/sample',
 						'shortcuts' => array(
 							'create' => array(
-								'name' 	=> 'sample.create',
+								'name' 	=> 'sample:create',
 								'uri' 	=> 'admin/sample/create',
 								'class' => 'add'
 								)

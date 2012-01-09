@@ -1,5 +1,5 @@
 <section class="title">
-	<h4><?php echo lang('sample.item_list'); ?></h4>
+	<h4><?php echo lang('sample:item_list'); ?></h4>
 </section>
 
 <section class="item">
@@ -11,8 +11,8 @@
 			<thead>
 				<tr>
 					<th><?php echo form_checkbox(array('name' => 'action_to_all', 'class' => 'check-all'));?></th>
-					<th><?php echo lang('sample.name'); ?></th>
-					<th><?php echo lang('sample.slug'); ?></th>
+					<th><?php echo lang('sample:name'); ?></th>
+					<th><?php echo lang('sample:slug'); ?></th>
 					<th></th>
 				</tr>
 			</thead>
@@ -32,9 +32,9 @@
 						<?php echo rtrim(site_url(), '/').'/sample'; ?></a></td>
 					<td class="actions">
 						<?php echo
-						anchor('sample', lang('sample.view'), 'class="button" target="_blank"').' '.
-						anchor('admin/sample/edit/'.$item->id, lang('sample.edit'), 'class="button"').' '.
-						anchor('admin/sample/delete/'.$item->id, 	lang('sample.delete'), array('class'=>'button')); ?>
+						anchor('sample', lang('sample:view'), 'class="button" target="_blank"').' '.
+						anchor('admin/sample/edit/'.$item->id, lang('sample:edit'), 'class="button"').' '.
+						anchor('admin/sample/delete/'.$item->id, 	lang('sample:delete'), array('class'=>'button')); ?>
 					</td>
 				</tr>
 				<?php endforeach; ?>
@@ -46,7 +46,7 @@
 		</div>
 		
 	<?php else: ?>
-		<div class="no_data"><?php echo lang('sample.no_items'); ?></div>
+		<div class="no_data"><?php echo lang('sample:no_items'); ?></div>
 	<?php endif;?>
 	
 	<?php echo form_close(); ?>
