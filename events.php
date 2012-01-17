@@ -29,7 +29,8 @@ class Events_Sample {
     {
         $this->ci->load->model('sample/sample_m');
         
-        $this->ci->sample_m->get_all();
+        // we're fetching this data on each front-end load. You'd probably want to do something with it IRL
+        $this->ci->sample_m->limit(5)->get_all();
     }
     
 }
