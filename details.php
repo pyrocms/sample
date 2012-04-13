@@ -2,7 +2,7 @@
 
 class Module_Sample extends Module {
 
-	public $version = '2.0';
+	public $version = '2.1';
 
 	public function info()
 	{
