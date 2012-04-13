@@ -18,8 +18,8 @@ class Sample extends Public_Controller
 		$this->load->model('sample_m');
 		$this->lang->load('sample');
 		
-		$this->template->append_metadata(css('sample.css', 'sample'))
-						->append_metadata(js('sample.js', 'sample'));
+		$this->template->append_css('module::sample.css')
+						->append_js('module::sample.js');
 	}
 
 	/**
