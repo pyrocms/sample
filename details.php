@@ -15,7 +15,10 @@ class Module_Sample extends Module {
 			),
 			'frontend' => TRUE,
 			'backend' => TRUE,
-			'menu' => 'content', // You can also place modules in their top level menu. For example try: 'menu' => 'Sample',
+                        'menu' => 'content', // You can also place modules in their top level menu. For example try: 'menu' => 'Sample',
+			'roles' => array(
+                                'sample_create', 'sample_read', 'sample_update', 'sample_delete'
+                        ), // sample crud roles
 			'sections' => array(
 				'items' => array(
 					'name' 	=> 'sample:items', // These are translated from your language file

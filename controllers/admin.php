@@ -44,6 +44,10 @@ class Admin extends Admin_Controller
 	 */
 	public function index()
 	{
+                // Role check here is not realy needed, 
+                // since user have to get any acces to module to see this page
+                // role_or_die('sample', 'sample_read');
+            
 		// here we use MY_Model's get_all() method to fetch everything
 		$items = $this->sample_m->get_all();
 
@@ -55,6 +59,7 @@ class Admin extends Admin_Controller
 
 	public function create()
 	{
+                role_or_die('sample', 'sample_create');
 		// Set the validation rules from the array above
 		$this->form_validation->set_rules($this->item_validation_rules);
 
@@ -88,6 +93,7 @@ class Admin extends Admin_Controller
 	
 	public function edit($id = 0)
 	{
+                role_or_die('sample', 'sample_update');
 		$this->data = $this->sample_m->get($id);
 
 		// Set the validation rules from the array above
@@ -122,6 +128,7 @@ class Admin extends Admin_Controller
 	
 	public function delete($id = 0)
 	{
+                role_or_die('sample', 'sample_delete');
 		// make sure the button was clicked and that there is an array of ids
 		if (isset($_POST['btnAction']) AND is_array($_POST['action_to']))
 		{
