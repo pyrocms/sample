@@ -24,12 +24,12 @@ class Admin extends Admin_Controller
 		$this->item_validation_rules = array(
 			array(
 				'field' => 'name',
-				'label' => 'Name',
+				'label' => lang('sample:name'),
 				'rules' => 'trim|max_length[100]|required'
 			),
 			array(
 				'field' => 'slug',
-				'label' => 'Slug',
+				'label' => lang('sample:slug'),
 				'rules' => 'trim|max_length[100]|required'
 			)
 		);
