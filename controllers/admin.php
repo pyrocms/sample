@@ -24,12 +24,12 @@ class Admin extends Admin_Controller
 		$this->item_validation_rules = array(
 			array(
 				'field' => 'name',
-				'label' => 'Name',
+				'label' => lang('sample:name'),
 				'rules' => 'trim|max_length[100]|required'
 			),
 			array(
 				'field' => 'slug',
-				'label' => 'Slug',
+				'label' => lang('sample:slug'),
 				'rules' => 'trim|max_length[100]|required'
 			)
 		);
@@ -65,13 +65,13 @@ class Admin extends Admin_Controller
 			if($this->sample_m->create($this->input->post()))
 			{
 				// All good...
-				$this->session->set_flashdata('success', lang('sample.success'));
+				$this->session->set_flashdata('success', lang('sample:success'));
 				redirect('admin/sample');
 			}
 			// Something went wrong. Show them an error
 			else
 			{
-				$this->session->set_flashdata('error', lang('sample.error'));
+				$this->session->set_flashdata('error', lang('sample:error'));
 				redirect('admin/sample/create');
 			}
 		}
@@ -82,7 +82,7 @@ class Admin extends Admin_Controller
 		}
 
 		// Build the view using sample/views/admin/form.php
-		$this->template->title($this->module_details['name'], lang('sample.new_item'))
+		$this->template->title($this->module_details['name'], lang('sample:new_item'))
 						->build('admin/form', $this->data);
 	}
 	
@@ -104,19 +104,19 @@ class Admin extends Admin_Controller
 			if($this->sample_m->update($id, $this->input->post()))
 			{
 				// All good...
-				$this->session->set_flashdata('success', lang('sample.success'));
+				$this->session->set_flashdata('success', lang('sample:success'));
 				redirect('admin/sample');
 			}
 			// Something went wrong. Show them an error
 			else
 			{
-				$this->session->set_flashdata('error', lang('sample.error'));
+				$this->session->set_flashdata('error', lang('sample:error'));
 				redirect('admin/sample/create');
 			}
 		}
 
 		// Build the view using sample/views/admin/form.php
-		$this->template->title($this->module_details['name'], lang('sample.edit'))
+		$this->template->title($this->module_details['name'], lang('sample:edit'))
 						->build('admin/form', $this->data);
 	}
 	
