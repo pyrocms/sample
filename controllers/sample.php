@@ -9,7 +9,6 @@
  */
 class Sample extends Public_Controller
 {
-
 	public function __construct()
 	{
 		parent::__construct();
@@ -17,9 +16,10 @@ class Sample extends Public_Controller
 		// Load the required classes
 		$this->load->model('sample_m');
 		$this->lang->load('sample');
-		
-		$this->template->append_css('module::sample.css')
-						->append_js('module::sample.js');
+
+		$this->template
+			->append_css('module::sample.css')
+			->append_js('module::sample.js');
 	}
 
 	/**
@@ -30,24 +30,21 @@ class Sample extends Public_Controller
 		// set the pagination limit
 		$limit = 5;
 		
-		$data->items = $this->sample_m->limit($limit)
+		$items = $this->sample_m->limit($limit)
 			->offset($offset)
 			->get_all();
 			
 		// we'll do a quick check here so we can tell tags whether there is data or not
-		if (count($data->items))
-		{
-			$data->items_exist = TRUE;
-		}
-		else
-		{
-			$data->items_exist = FALSE;
-		}
+		$items_exist = count($items) > 0;
 
 		// we're using the pagination helper to do the pagination for us. Params are: (module/method, total count, limit, uri segment)
-		$data->pagination = create_pagination('sample', $this->sample_m->count_all(), $limit, 2);
+		$pagination = create_pagination('sample', $this->sample_m->count_all(), $limit, 2);
 
-		$this->template->title($this->module_details['name'], 'the rest of the page title')
-						->build('index', $data);
+		$this->template
+			->title($this->module_details['name'], 'the rest of the page title')
+			->set('items', $items)
+			->set('items_exist', $items_exist)
+			->set('pagination', $pagination)
+			->build('index', $data);
 	}
 }

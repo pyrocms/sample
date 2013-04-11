@@ -48,9 +48,10 @@ class Admin extends Admin_Controller
 		$items = $this->sample_m->get_all();
 
 		// Build the view with sample/views/admin/items.php
-		$this->data->items =& $items;
-		$this->template->title($this->module_details['name'])
-						->build('admin/items', $this->data);
+		$this->template
+			->title($this->module_details['name'])
+			->set('items', $items)
+			->build('admin/items');
 	}
 
 	public function create()
@@ -59,10 +60,10 @@ class Admin extends Admin_Controller
 		$this->form_validation->set_rules($this->item_validation_rules);
 
 		// check if the form validation passed
-		if($this->form_validation->run())
+		if ($this->form_validation->run())
 		{
 			// See if the model can create the record
-			if($this->sample_m->create($this->input->post()))
+			if ($this->sample_m->create($this->input->post()))
 			{
 				// All good...
 				$this->session->set_flashdata('success', lang('sample.success'));
@@ -76,32 +77,35 @@ class Admin extends Admin_Controller
 			}
 		}
 		
-		foreach ($this->item_validation_rules AS $rule)
+		$sample = new stdClass;
+		foreach ($this->item_validation_rules as $rule)
 		{
-			$this->data->{$rule['field']} = $this->input->post($rule['field']);
+			$sample->{$rule['field']} = $this->input->post($rule['field']);
 		}
 
 		// Build the view using sample/views/admin/form.php
-		$this->template->title($this->module_details['name'], lang('sample.new_item'))
-						->build('admin/form', $this->data);
+		$this->template
+			->title($this->module_details['name'], lang('sample.new_item'))
+			->set('sample', $sample)
+			->build('admin/form');
 	}
 	
 	public function edit($id = 0)
 	{
-		$this->data = $this->sample_m->get($id);
+		$sample = $this->sample_m->get($id);
 
 		// Set the validation rules from the array above
 		$this->form_validation->set_rules($this->item_validation_rules);
 
 		// check if the form validation passed
-		if($this->form_validation->run())
+		if ($this->form_validation->run())
 		{
 			// get rid of the btnAction item that tells us which button was clicked.
 			// If we don't unset it MY_Model will try to insert it
 			unset($_POST['btnAction']);
 			
 			// See if the model can create the record
-			if($this->sample_m->update($id, $this->input->post()))
+			if ($this->sample_m->update($id, $this->input->post()))
 			{
 				// All good...
 				$this->session->set_flashdata('success', lang('sample.success'));
@@ -116,8 +120,9 @@ class Admin extends Admin_Controller
 		}
 
 		// Build the view using sample/views/admin/form.php
-		$this->template->title($this->module_details['name'], lang('sample.edit'))
-						->build('admin/form', $this->data);
+		$this->template
+			->title($this->module_details['name'], lang('sample.edit'))
+			->build('admin/form');
 	}
 	
 	public function delete($id = 0)
