@@ -122,6 +122,7 @@ class Admin extends Admin_Controller
 		// Build the view using sample/views/admin/form.php
 		$this->template
 			->title($this->module_details['name'], lang('sample.edit'))
+			->set('sample', $sample)
 			->build('admin/form');
 	}
 	
