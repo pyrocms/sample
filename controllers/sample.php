@@ -45,6 +45,6 @@ class Sample extends Public_Controller
 			->set('items', $items)
 			->set('items_exist', $items_exist)
 			->set('pagination', $pagination)
-			->build('index', $data);
+			->build('index');
 	}
 }
