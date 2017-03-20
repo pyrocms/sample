@@ -39,6 +39,8 @@ class Sample extends Public_Controller
 
 		// we're using the pagination helper to do the pagination for us. Params are: (module/method, total count, limit, uri segment)
 		$pagination = create_pagination('sample', $this->sample_m->count_all(), $limit, 2);
+		
+		$data = '';
 
 		$this->template
 			->title($this->module_details['name'], 'the rest of the page title')
